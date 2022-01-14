@@ -1,0 +1,33 @@
+﻿@{
+    ViewData["Title"] = "Formularz";
+}
+
+@using WebApplication3.Controllers
+@model FormDataModel
+
+    <form action="/" method="post">
+        <div class="form-group">
+            @Html.LabelFor(model => model.Name)
+            <br />
+            @Html.EditorFor(model => model.Name)
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.RepetitionCount)
+            <br />
+            @Html.EditorFor(model => model.RepetitionCount)
+        </div>
+        <input type="submit" name="" value="Oblicz" />
+    </form>
+<br />
+@if (Model is FormDataModel)
+{
+    if (Model.RepetitionCount > 0 && Model.RepetitionCount <= 5)
+    {
+        for (int i = 0; i < Model.RepetitionCount; i++)
+        {
+            <p>@Model.Name</p>
+        }
+    } else {
+        <p>Ilość powtórzeń musi mieścić się w przedziale od 1 do 5</p>
+    }
+}
